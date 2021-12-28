@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); //*Archivo necesario p
 
 module.exports = {
 	//*Aquí se encuentra toda la configuración de lo que va a suceder. Modulo para exportar.
-	entry: './src/index.js', //*Punto de entrada con su dirección.Aquí vive el código inicial y de aquí parte al desarrollo.
+	entry: ['@babel/polyfill', './src/index.js'], //*Punto de entrada con su dirección.Aquí vive el código inicial y de aquí parte al desarrollo.
 	output: {
 		//*Donde se envía el proyecto estructurado y compilado listo para producción.
 		path: path.resolve(__dirname, 'dist'), //*Creamos el lugar dónde se exportará el proyecto.
@@ -36,13 +36,13 @@ module.exports = {
 	},
 	plugins: [
 		//*Establecemos los plugins que vamos a utilizar
-		new HtmlWebpackPlugin([
+		new HtmlWebpackPlugin(
 			//*Permite trabajar con los archivos HTML
 			{
 				inject: true, //*Cómo vamos a inyectar un valor a un archivo HTML.
 				template: './public/index.html', //*Dirección donde se encuentra el template principal
 				filename: './index.html', //*El nombre que tendrá el archivo
-			},
-		]),
+			}
+		),
 	],
 };
